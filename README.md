@@ -28,21 +28,21 @@ You will be able to interact with the server by creating, updating, and deleting
 ### Step 3: Test the API
 The API is available at http://localhost:8080 and supports the following endpoints:
 
-POST /api/users — create a new user.
-GET /api/users — retrieve a list of all users.
-PUT /api/users?id={id} — update user data by ID.
-DELETE /api/users?id={id} — delete a user by ID.
-POST /api/users/reset — reset user IDs.
+- POST /api/users — create a new user.
+- GET /api/users — retrieve a list of all users.
+- PUT /api/users?id={id} — update user data by ID.
+- DELETE /api/users?id={id} — delete a user by ID.
+- POST /api/users/reset — reset user IDs.
 
 ## Tools and Resources Used
 
-Go — for implementing the server and handling requests.
-GORM — for interacting with the PostgreSQL database.
-PostgreSQL — the database for storing users.
-HTML, JavaScript — for creating the frontend.
-CORS — to allow cross-origin requests between the frontend and the server.
+- Go — for implementing the server and handling requests.
+- GORM — for interacting with the PostgreSQL database.
+- PostgreSQL — the database for storing users.
+- HTML, JavaScript — for creating the frontend.
+- CORS — to allow cross-origin requests between the frontend and the server.
 
 ## Project Structure
 
-main.go — the main file implementing the server and request handling logic.
-JustHTMLPage.html — the HTML page for interacting with the server.
+- main.go — the main file implementing the server and request handling logic.
+- JustHTMLPage.html — the HTML page for interacting with the server.

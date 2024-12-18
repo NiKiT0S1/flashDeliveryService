@@ -19,7 +19,7 @@
         h1 {
             color: #ff6f61;
             font-size: 3rem;
-            margin-top: 30px; /* Отступ сверху */
+            margin-top: 30px;
             margin-bottom: 20px;
             margin-top: 120px;
         }
@@ -27,7 +27,7 @@
             width: 80%;
             max-width: 600px;
             background-color: #fff;
-            padding: 20px; /* Отступы внутри контейнера */
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
@@ -90,13 +90,21 @@
 </div>
 
 <div class="container">
-    <h2>Update/Delete User</h2>
+    <h2>Update/Delete User/Reset ID</h2>
     <input type="number" id="userId" class="input-field" placeholder="Enter User ID" required>
     <div class="button-container">
         <button onclick="updateUser()">Update User</button>
         <button onclick="deleteUser()">Delete User</button>
+        <button onclick="resetIDs()">Reset ID's</button>
     </div>
 </div>
+
+<!--<div class = "container">-->
+<!--    <h2>Reset ID</h2>-->
+<!--    <div class = "button-container">-->
+<!--        <button onclick="resetIDs()">Reset ID's</button>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div id="result" class="result"></div>
 
@@ -131,9 +139,10 @@
     async function updateUser() {
         const userId = document.getElementById('userId').value;
         const name = document.getElementById('userName').value;
+        const email = document.getElementById('userEmail').value;
 
-        if (!userId || !name) {
-            alert("Please provide User ID and New Name.");
+        if (!userId || !name || !email) {
+            alert("Please provide User ID, New Name and New Email.");
             return;
         }
 
@@ -142,7 +151,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: name }),
+            body: JSON.stringify({ name: name, email: email }),
         });
 
         const data = await response.json();
@@ -164,7 +173,19 @@
         const data = await response.json();
         document.getElementById('result').innerHTML = `<strong>User Deleted:</strong><br>${JSON.stringify(data)}`;
     }
-</script>
 
+    async function resetIDs() {
+        const response = await fetch('http://localhost:8080/api/users/reset', {
+            method: 'POST',
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById('result').innerHTML = `<strong>Reset Completed:</strong><br>${JSON.stringify(data)}`;
+        } else {
+            document.getElementById('result').innerHTML = `<strong>Error:</strong><br>Failed to reset IDs`;
+        }
+    }
+</script>
 </body>
 </html>
